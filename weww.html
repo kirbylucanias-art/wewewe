@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monthsary</title>
+
+<style>
+
+body {
+  margin: 0;
+  background: #f7f6f6; /* dark like your image */
+}
+
+/* MAIN BACKGROUND */
+.collage {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* POLAROID FRAMES */
+.polaroid {
+  position: absolute;
+  width: 120px;
+  height: 140px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+/* inner black square (photo area) */
+.polaroid::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: 90px;
+  background: black;
+  border-radius: 3px;
+}
+
+/* small heart */
+.polaroid::before {
+  content: "❤";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+}
+
+/* RANDOM POSITIONS */
+.p1 { top: 5%; left: 10%; transform: rotate(-10deg); }
+.p2 { top: 20%; right: 15%; transform: rotate(8deg); }
+.p3 { top: 50%; left: 5%; transform: rotate(-5deg); }
+.p4 { bottom: 10%; right: 10%; transform: rotate(12deg); }
+.p5 { bottom: 20%; left: 25%; transform: rotate(-8deg); }
+
+/* STICKERS */
+.sticker {
+  position: absolute;
+  width: 80px;
+}
+
+/* RANDOM STICKERS */
+.s1 { top: 10%; right: 5%; }
+.s2 { bottom: 15%; right: 20%; }
+.s3 { top: 60%; left: 40%; width: 50px; }
+
+/* OPTIONAL HOVER EFFECT */
+.polaroid:hover {
+  transform: scale(1.1) rotate(0deg);
+  z-index: 10;
+}
+
+/* CENTER CARD */
+.card {
+  width: 90%;
+  max-width: 500px;
+  margin: 80px auto;
+  background: white;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.card h1 {
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff1e4d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND IMAGES -->
+<div class="collage">
+  <!-- Polaroids -->
+  <div>
+    <img src="image/photo10.jfif" class="polaroid p1">
+  </div>
+  <div>
+    <img src="image/photo11.jfif" class="polaroid p2">
+  </div>
+  <div>
+    <img src="image/photo9.jfif" class="polaroid p3">
+  </div>
+  <div>
+    <img src="image/photo8.jfif" class="polaroid p4">
+  </div>
+  <div>
+    <img src="image/photo7.jfif" class="polaroid p5">
+  </div>
+
+  <!-- Stickers -->
+  <img src="image/master.jfif" class="sticker s1">
+  <img src="image/spidey.jpg" class="sticker s2">
+  <img src="image/kitty.jfif" class="sticker s3">
+</div>
+
+<!-- CENTER CARD -->
+<div class="card">
+  <h1>HAPPY 2ND MONTHSARY 💖</h1>
+  
+
+  <p>
+    Happy 2nd monthsary! I am so happy that you are in my life. 
+    These two months have been the best time for me because you make me feel very special every day. 
+    I love our long talks and the way we laugh together. 
+    You are a very kind and beautiful person, and I am lucky to be your partner.
+  </p>
+
+  <p>
+    I want to thank you for staying by my side and for being so supportive. 
+    Even when things are busy, thinking of you always makes me smile.
+    I am excited to make more happy memories with you in the future.
+    I love you very much, and I look forward to many more months together.
+
+  </p>
+
+  <button onclick="showMessage()">Click Me 💌</button>
+</div>
+
+<script>
+function showMessage() {
+  alert("I love you 💖");
+}
+</script>
+
+</body>
+</html>
