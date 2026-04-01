@@ -6,38 +6,48 @@
 <title>Monthsary</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  background: #f7f6f6; /* dark like your image */
+  padding: 0;
+  background: #f7f6f6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* MAIN BACKGROUND */
 .collage {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
+  z-index: 1;
 }
 
-/* POLAROID FRAMES */
+/* RESPONSIVE POLAROID FRAMES */
 .polaroid {
   position: absolute;
-  width: 120px;
-  height: 140px;
+  width: clamp(80px, 12vw, 120px);
+  height: clamp(95px, 14vw, 140px);
   background: white;
   border-radius: 6px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 /* inner black square (photo area) */
 .polaroid::after {
   content: "";
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100px;
-  height: 90px;
+  top: 8px;
+  left: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 28px);
   background: black;
   border-radius: 3px;
 }
@@ -46,72 +56,146 @@ body {
 .polaroid::before {
   content: "❤";
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 10px;
+  font-size: clamp(8px, 1.2vw, 10px);
+  font-weight: bold;
 }
 
-/* RANDOM POSITIONS */
-.p1 { top: 5%; left: 10%; transform: rotate(-10deg); }
-.p2 { top: 20%; right: 15%; transform: rotate(8deg); }
-.p3 { top: 50%; left: 5%; transform: rotate(-5deg); }
-.p4 { bottom: 10%; right: 10%; transform: rotate(12deg); }
-.p5 { bottom: 20%; left: 25%; transform: rotate(-8deg); }
+/* RESPONSIVE POSITIONS */
+.p1 { top: 5%; left: 5%; transform: rotate(-10deg); }
+.p2 { top: 20%; right: 5%; transform: rotate(8deg); }
+.p3 { top: 45%; left: 3%; transform: rotate(-5deg); }
+.p4 { bottom: 10%; right: 5%; transform: rotate(12deg); }
+.p5 { bottom: 20%; left: 15%; transform: rotate(-8deg); }
 
-/* STICKERS */
+/* RESPONSIVE STICKERS */
 .sticker {
   position: absolute;
-  width: 80px;
+  width: clamp(40px, 8vw, 80px);
+  height: auto;
+  z-index: 2;
 }
 
-/* RANDOM STICKERS */
-.s1 { top: 10%; right: 5%; }
-.s2 { bottom: 15%; right: 20%; }
-.s3 { top: 60%; left: 40%; width: 50px; }
+/* RESPONSIVE STICKER POSITIONS */
+.s1 { top: 8%; right: 3%; }
+.s2 { bottom: 15%; right: 10%; }
+.s3 { top: 55%; left: 35%; width: clamp(30px, 6vw, 50px); }
 
-/* OPTIONAL HOVER EFFECT */
-.polaroid:hover {
-  transform: scale(1.1) rotate(0deg);
-  z-index: 10;
+/* HOVER/TAP EFFECT */
+.polaroid:hover,
+.polaroid:active {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 20;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* CENTER CARD */
+/* RESPONSIVE CENTER CARD */
 .card {
+  position: relative;
+  z-index: 10;
   width: 90%;
   max-width: 500px;
-  margin: 80px auto;
-  background: white;
-  padding: 30px;
+  margin: clamp(20px, 8vw, 80px) auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: clamp(20px, 5vw, 30px);
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 .card h1 {
-  font-size: 22px;
-  letter-spacing: 2px;
+  font-size: clamp(20px, 5vw, 28px);
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  background: linear-gradient(45deg, #ff4d6d, #ff8a9e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .card p {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: clamp(14px, 3.5vw, 16px);
+  line-height: 1.7;
   color: #333;
+  margin: 0 0 15px 0;
 }
 
-/* BUTTON */
+.card p:last-of-type {
+  margin-bottom: 25px;
+}
+
+/* RESPONSIVE BUTTON */
 button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #ff4d6d;
+  position: relative;
+  margin-top: 10px;
+  padding: clamp(12px, 3vw, 15px) clamp(25px, 6vw, 30px);
+  background: linear-gradient(45deg, #ff4d6d, #ff6b88);
   border: none;
   color: white;
-  border-radius: 8px;
+  border-radius: 50px;
   cursor: pointer;
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before,
+button:active::before {
+  left: 100%;
 }
 
 button:hover {
-  background: #ff1e4d;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(255, 77, 109, 0.5);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* MOBILE SPECIFIC IMPROVEMENTS */
+@media (max-width: 480px) {
+  .card {
+    margin: 15px auto;
+    padding: 20px 15px;
+  }
+  
+  .p1 { left: 2%; }
+  .p2 { right: 2%; }
+  .p3 { left: 1%; }
+  .p4 { right: 2%; }
+  .p5 { left: 5%; }
+  
+  .s1 { right: 1%; }
+  .s2 { right: 5%; }
+  .s3 { left: 25%; }
+}
+
+/* PREVENT ZOOM ON INPUT FOCUS (iOS) */
+input, button {
+  font-size: 16px;
+}
+
+/* SMOOTH SCROLLING */
+html {
+  scroll-behavior: smooth;
 }
 </style>
 </head>
@@ -121,33 +205,22 @@ button:hover {
 <!-- BACKGROUND IMAGES -->
 <div class="collage">
   <!-- Polaroids -->
-  <div>
-    <img src="image/photo10.jfif" class="polaroid p1">
-  </div>
-  <div>
-    <img src="image/photo11.jfif" class="polaroid p2">
-  </div>
-  <div>
-    <img src="image/photo9.jfif" class="polaroid p3">
-  </div>
-  <div>
-    <img src="image/photo8.jfif" class="polaroid p4">
-  </div>
-  <div>
-    <img src="image/photo7.jfif" class="polaroid p5">
-  </div>
+  <img src="image/photo10.jfif" class="polaroid p1" alt="Photo 1" loading="lazy">
+  <img src="image/photo11.jfif" class="polaroid p2" alt="Photo 2" loading="lazy">
+  <img src="image/photo9.jfif" class="polaroid p3" alt="Photo 3" loading="lazy">
+  <img src="image/photo8.jfif" class="polaroid p4" alt="Photo 4" loading="lazy">
+  <img src="image/photo7.jfif" class="polaroid p5" alt="Photo 5" loading="lazy">
 
   <!-- Stickers -->
-  <img src="image/master.jfif" class="sticker s1">
-  <img src="image/spidey.jpg" class="sticker s2">
-  <img src="image/kitty.jfif" class="sticker s3">
+  <img src="image/master.jfif" class="sticker s1" alt="Sticker 1" loading="lazy">
+  <img src="image/spidey.jpg" class="sticker s2" alt="Sticker 2" loading="lazy">
+  <img src="image/kitty.jfif" class="sticker s3" alt="Sticker 3" loading="lazy">
 </div>
 
 <!-- CENTER CARD -->
 <div class="card">
   <h1>HAPPY 2ND MONTHSARY 💖</h1>
   
-
   <p>
     Happy 2nd monthsary! I am so happy that you are in my life. 
     These two months have been the best time for me because you make me feel very special every day. 
@@ -160,7 +233,6 @@ button:hover {
     Even when things are busy, thinking of you always makes me smile.
     I am excited to make more happy memories with you in the future.
     I love you very much, and I look forward to many more months together.
-
   </p>
 
   <button onclick="showMessage()">Click Me 💌</button>
@@ -168,9 +240,47 @@ button:hover {
 
 <script>
 function showMessage() {
-  alert("I love you 💖");
+  // Better mobile-friendly alert
+  if (window.innerWidth <= 768) {
+    // Use a more modern notification for mobile
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #ff4d6d, #ff6b88);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(255,77,109,0.5);
+      animation: slideDown 0.5s ease;
+    `;
+    notification.textContent = "I love you 💖";
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  } else {
+    alert("I love you 💖");
+  }
 }
+
+// Add animation keyframes
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideDown {
+    from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+  }
+`;
+document.head.appendChild(style);
 </script>
 
 </body>
+</html>
 </html>
